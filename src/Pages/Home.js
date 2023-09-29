@@ -1,12 +1,12 @@
 import React from "react";
-import Navigate from "../Components/Nav";
+import MapBlock from "../Components/Map";
 
 export default function Home() {
 
     return(
 
         <React.Fragment>
-            <Navigate />
+            <MapBlock />
         </React.Fragment>
 
     )

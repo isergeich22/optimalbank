@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav"
+import { YMaps, Map } from "@pbe/react-yandex-maps"
 
 export default function Navigate() {
 
@@ -21,6 +22,11 @@ export default function Navigate() {
                     </Nav.Link>
                 </Nav.Item>
             </Nav>
+            <YMaps className="map-block">
+                 <div>
+                    <Map  />
+                 </div>
+            </YMaps>
         </>
     )
 
