@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Departments from "../../Data/departments.json"
 import { Placemark } from "@pbe/react-yandex-maps";
 
@@ -10,20 +10,17 @@ Departments.branches.forEach(el => {
         }
 })
 
-marks.map(item => (
-
-        console.log(item.coordinates)
-
-))
-
 export default function Marks() {
+
+        // const [state, setState] = useState([])
 
         return(                
 
                 marks.map(item => (
 
-
-                        <Placemark key={item.Biskvit_id} geometry={[item.coordinates.latitude, item.coordinates.longitude]}/>
+                        
+                        <Placemark onClick={() => {console.log([item.coordinates.latitude, item.coordinates.longitude])} } options={{iconColor: "red"}} key={item.Biskvit_id} geometry={[item.coordinates.latitude, item.coordinates.longitude]}/>
+                        
 
                 ))
 

@@ -10,9 +10,9 @@ export default function MapBlock() {
                 <div className="map-block">
                     <Map defaultState={{ center: [55.75, 37.57], zoom: 9}} width={"100vw"} height={"94vh"}>
                         <GeolocationControl />
-                        <SearchControl options={{float: "right"}}/>
+                        <SearchControl options={{float: "right", size: "medium"}}/>
                                 
-                                <Marks/>
+                                <Marks />
 
                     </Map>
                 </div>
