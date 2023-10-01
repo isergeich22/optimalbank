@@ -11,7 +11,6 @@ export default function MapBlock() {
                     <Map defaultState={{ center: [55.75, 37.57], zoom: 9}} width={"100vw"} height={"94vh"}>
                         <GeolocationControl />
                         <SearchControl options={{float: "right"}}/>
-
                                 
                                 <Marks/>
 
