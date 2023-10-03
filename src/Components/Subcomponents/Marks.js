@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Departments from "../../Data/departments.json"
 import { Placemark } from "@pbe/react-yandex-maps";
 
