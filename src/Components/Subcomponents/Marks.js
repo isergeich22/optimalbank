@@ -19,7 +19,7 @@ export default function Marks() {
                 marks.map(item => (
 
                         
-                        <Placemark onClick={() => {console.log([item.coordinates.latitude, item.coordinates.longitude])} } options={{iconColor: "red"}} key={item.Biskvit_id} geometry={[item.coordinates.latitude, item.coordinates.longitude]}/>
+                        <Placemark onClick={() => {console.log([item.coordinates.latitude, item.coordinates.longitude])} } options={{iconLayout: "default#image", iconImageSize: [32, 32], iconImageHref: "/icon.png"}} key={item.Biskvit_id} geometry={[item.coordinates.latitude, item.coordinates.longitude]} />
                         
 
                 ))
