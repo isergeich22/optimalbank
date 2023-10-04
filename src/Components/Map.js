@@ -11,8 +11,8 @@ export default function MapBlock() {
             <YMaps query={{apikey: '2d3deabb-4236-45c3-a61b-b92127f41286', lang: 'ru_RU'}}>
                 <div className="map-block">
                     <Map defaultState={{ center: [55.751574, 37.573856], zoom: 9 }} width={"100vw"} height={"94vh"}>
-                        <GeolocationControl />
-                        <ZoomControl options={{float: "right", size: "auto"}}/>
+                        <GeolocationControl options={{float: "right"}}/>
+                        <ZoomControl options={{position: {right: "10px", top: "150px"}}}/>
                         <SearchControl options={{float: "right", size: "medium"}}/>
                         
                                 <Marks />
