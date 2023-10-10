@@ -1,17 +1,20 @@
 import React from "react";
 import MapBlock from "../Components/Map";
 import Header from "../Components/Header";
-import Window from "../Components/Subcomponents/Window";
+import Window from "../Components/Context/Window";
+import { ModalProvider } from "../Components/Context/ModalContext";
 
 export default function Home() {
 
     return(
 
-        <React.Fragment>
-            <Window />
-            <Header />
-            <MapBlock />
-        </React.Fragment>
+        <ModalProvider>
+            <React.Fragment>
+                <Window />
+                <Header />
+                <MapBlock toggle={() => {}}/>
+            </React.Fragment>
+        </ModalProvider>
 
     )
 

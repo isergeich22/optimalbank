@@ -1,12 +1,18 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import {useModal} from "./ModalContext"
 
 export default function Window() {
 
+    const modal = useModal()
+
+    if(!modal.visible) return null
+
     return (
         <div
-          className="modal show "
+          className="modal show"
           style={{ display: 'block', position: 'fixed' }}
+          onClick={modal.toggle}
         >
           <Modal.Dialog >
             <Modal.Header closeButton>
