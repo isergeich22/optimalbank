@@ -18,7 +18,11 @@ export default function Marks() {
       onClick={() => {
         console.log([item.coordinates.latitude, item.coordinates.longitude]);
       }}
-      options={{ iconLayout: 'default#image', iconImageSize: [32, 32], iconImageHref: '/icon.png' }}
+      options={{
+        iconLayout: 'default#image',
+        iconImageSize: [32, 32],
+        iconImageHref: '/icon.png',
+      }}
       key={item.Biskvit_id}
       geometry={[item.coordinates.latitude, item.coordinates.longitude]}
     />
