@@ -22,7 +22,7 @@ export default function DepartmentsModal({ curModal, onChangeModal }) {
     departments: (
       <>
         {departments.map((item) => (
-          <div className={styles.card} key={item.id}>
+          <div className={styles.card} key={item.id} onClick={() => setSelectedItem(item)}>
             <img src="/icon.png" alt="bank logo" width={32} height={32} />
             <div>
               <p>{item.address}</p>

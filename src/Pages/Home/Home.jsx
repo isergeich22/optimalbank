@@ -18,9 +18,8 @@ export default function Home() {
       <Header />
       <Title label={label} sublabel={sublabel} />
       <div style={{ display: 'flex', marginTop: '15vh', gap: '9px' }}>
-        <MapBlock />
-
         <DepartmentsModal curModal={curModal} onChangeModal={handleChangeModal} />
+        <MapBlock />
       </div>
     </>
   );

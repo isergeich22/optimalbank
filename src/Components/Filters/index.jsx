@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import styles from './Filters.module.css';
+import closeImage from '../../assets/close.png';
 const parameters = [
   {
     id: 1,
@@ -67,16 +68,16 @@ const Filters = ({ curModal, onChangeModal }) => {
 
   return (
     <Card className={styles.card}>
-      <Card.Header>
+      <Card.Header className={styles.cardHeader}>
+        <h2 className={styles.heading}>Параметры поиска</h2>
         <Button
           variant="dark"
           onClick={() => onChangeModal(curModal === 'filters' ? 'base' : 'filters')}
           className={styles.closeButton}>
-          Выход
+          <img src={closeImage} alt="come back btn" width={50} height={50} />
         </Button>
       </Card.Header>
       <Card.Body className={styles.cardBody}>
-        <h2 className={styles.heading}>Параметры поиска</h2>
         <ul className={styles.parametersList}>
           {parameters.map((parameter) => (
             <li key={parameter.id} className={styles.parameter}>
