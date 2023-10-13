@@ -1,0 +1,10 @@
+.container {
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  min-width: 20vw;
+  height: 60vh;
+  overflow: auto;
+
+  position: relative;
+}
