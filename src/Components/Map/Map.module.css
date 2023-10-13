@@ -1,0 +1,5 @@
+.MapContainer {
+  display: 'flex';
+
+  position: 'relative';
+}
