@@ -12,7 +12,7 @@ export default function MapBlock() {
       <div className={styles.MapContainer}>
         <YMaps query={{ apikey: apiKey, lang: 'ru_RU' }} style={{ borderRadius: '1000px' }}>
           <Map
-            defaultState={{ center: [55.751574, 37.573856], zoom: 9 }}
+            defaultState={{ center: [55.751574, 37.573856], zoom: 9 }} // zoom>9 : showSomething
             width={'60vw'}
             height={'60vh'}>
             <GeolocationControl />
