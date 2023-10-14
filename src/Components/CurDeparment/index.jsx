@@ -26,8 +26,11 @@ const CurDepartment = () => {
         <p>{selectedItem.scheduleFl}</p>
       </div>
 
-      <Button onClick={() => openYandexMaps(selectedItem)} type="primary">
+      <Button onClick={() => openYandexMaps(selectedItem)} type="primary" style={{marginBottom: "2vh"}}>
         Открыть в Яндекс.Картах
+      </Button>
+      <Button type="primary">
+              Записаться в очередь
       </Button>
     </div>
   );
