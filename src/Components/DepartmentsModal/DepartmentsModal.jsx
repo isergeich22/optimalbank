@@ -24,9 +24,15 @@ export default function DepartmentsModal({ curModal, onChangeModal }) {
   const [isOpenFilters, setIsOpenFilters] = useState(false);
 
   useEffect(() => {
-    useFetchDepartments()
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
+    (async () => {
+      console.log('fetching');
+      try {
+        const departmentsData = await useFetchDepartments();
+        console.log(departmentsData);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, []);
   const handleFiltersOpening = (value) => {
     setIsOpenFilters(value);

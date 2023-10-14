@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Button, Modal } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+
 import styles from './Filters.module.css';
 import { useFormik } from 'formik';
 
@@ -77,45 +77,41 @@ const Filters = ({ isOpen, onClose }) => {
       title="Параметры поиска"
       open={isOpen}
       onCancel={() => onClose(false)}
-      footer={[
-        <Button key="submit" type="primary" onClick={formik.handleSubmit}>
-          Применить
-        </Button>,
-        <Button key="back" onClick={() => onClose(false)}>
-          Закрыть
-        </Button>,
-      ]}>
+      footer={null}
+      centered // Центрировать модалку
+      style={{ maxHeight: '80vh', overflowY: 'auto', minWidth: '40vw' }}>
       <div className={styles.cardBody}>
         <form>
-          <ul className={styles.parametersList}>
+          <div className={styles.columnWrapper}>
             {parameters.map((parameter) => (
-              <li key={parameter.id} className={styles.parameter}>
-                <Checkbox
-                  checked={formik.values.selectedOptions.includes(parameter.label)}
-                  onChange={() => {
-                    formik.setFieldValue(
-                      'selectedOptions',
-                      formik.values.selectedOptions.includes(parameter.label)
-                        ? formik.values.selectedOptions.filter(
-                            (option) => option !== parameter.label,
-                          )
-                        : [...formik.values.selectedOptions, parameter.label],
-                    );
-                  }}>
-                  {parameter.label}
-                </Checkbox>
-                {formik.values.selectedOptions.includes(parameter.label) && (
-                  <ul className={styles.subOptionsList}>
-                    {parameter.options.map((option) => (
-                      <li key={option} className={styles.subOption}>
+              <div key={parameter.id} className={styles.category}>
+                <h2>{parameter.label}</h2>
+                <ul className={styles.subOptionsList}>
+                  {parameter.options.map((option) => (
+                    <li key={option} className={styles.subOption}>
+                      <Checkbox
+                        checked={formik.values.selectedOptions.includes(option)}
+                        onChange={() => {
+                          formik.setFieldValue(
+                            'selectedOptions',
+                            formik.values.selectedOptions.includes(option)
+                              ? formik.values.selectedOptions.filter((item) => item !== option)
+                              : [...formik.values.selectedOptions, option],
+                          );
+                        }}>
                         {option}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
+                      </Checkbox>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
+          <div className={styles.submitContainer}>
+            <button onClick={formik.handleSubmit} className={styles.subminBtn}>
+              Применить
+            </button>
+          </div>
         </form>
       </div>
     </Modal>
