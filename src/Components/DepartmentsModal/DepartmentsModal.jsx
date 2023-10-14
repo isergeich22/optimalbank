@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { PopupContext } from '../../App';
 import styles from './DepartmentsModal.module.css';
 import Departments from '../../Data/departments.json';
 
-import useFetchDepartments from '../../hooks/useFetchDepartments';
 import Filters from '../Filters';
 
 import CurDepartment from '../CurDeparment';
@@ -23,17 +22,6 @@ export default function DepartmentsModal({ curModal, onChangeModal }) {
   const [activeTab, setActiveTab] = useState('departments');
   const [isOpenFilters, setIsOpenFilters] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      console.log('fetching');
-      try {
-        const departmentsData = await useFetchDepartments();
-        console.log(departmentsData);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
   const handleFiltersOpening = (value) => {
     setIsOpenFilters(value);
 
