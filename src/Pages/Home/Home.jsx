@@ -8,8 +8,8 @@ import Title from '../../Components/Title/Title';
 import DepartmentsModal from '../../Components/DepartmentsModal/DepartmentsModal';
 export default function Home() {
   const [curModal, setCurModal] = useState('base');
-  const label = 'Давай уточним параметры поиска';
-  const sublabel = 'Так я найду самый оптимальный вариант для тебя! Жми сюда...';
+  const label = 'Поиск отделения / банкомата';
+  const sublabel = '';
   const handleChangeModal = (value) => {
     setCurModal(value);
   };
