@@ -1,0 +1,26 @@
+.container {
+  padding: 0 10px;
+  text-align: left;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.header > h3 {
+  word-wrap: wrap;
+}
+.container > p {
+  align-self: start;
+  color: gray;
+}
+.schedule {
+  align-self: start;
+}
+.schedule > p {
+  color: gray;
+}

@@ -59,3 +59,28 @@
 .subOption {
   margin-bottom: 5px;
 }
+.submitContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.subminBtn {
+  color: black;
+  width: 324px;
+  height: 49.703px;
+  border-radius: 50px;
+  background: linear-gradient(107deg, #367df7 23.09%, #80eef6 57.43%, #8eb2ff 76.22%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.columnWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category {
+  flex-basis: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
