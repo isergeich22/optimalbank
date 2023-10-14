@@ -12,6 +12,8 @@ export default function MapBlock() {
     zoom: 9,
   });
 
+  const [searchCoordinates, setSearchCoordinates] = useState(null);
+
   const handleGeolocationSuccess = (geolocation) => {
     console.log('geo');
     console.log(geolocation.position);
@@ -21,14 +23,18 @@ export default function MapBlock() {
     });
   };
 
+  const handleSearchResult = (result) => {
+    const coordinates = result.geoObjects.get(0).geometry.getCoordinates();
+    setSearchCoordinates(coordinates);
+  };
+
+  const currentCoordinates = searchCoordinates || mapState.center;
+
   return (
     <>
       <div className={styles.MapContainer}>
         <YMaps query={{ apikey: apiKey, lang: 'ru_RU' }} style={{ borderRadius: '1000px' }}>
-          <Map
-            state={mapState} // Подключаем состояние карты
-            width={'60vw'}
-            height={'60vh'}>
+          <Map state={mapState} width={'60vw'} height={'60vh'}>
             <GeolocationControl
               options={{ float: 'right', size: 'auto' }}
               onSuccess={handleGeolocationSuccess}
@@ -36,9 +42,11 @@ export default function MapBlock() {
             />
 
             <ZoomControl options={{ float: 'right', size: 'auto' }} />
-            <SearchControl options={{ float: 'right', size: 'medium' }} />
+            <div className={styles.search}>
+              <SearchControl />
+            </div>
 
-            <Marks />
+            <Marks curDot={currentCoordinates} />
           </Map>
         </YMaps>
       </div>
