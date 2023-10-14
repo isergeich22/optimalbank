@@ -1,18 +1,32 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import Departments from '../../Data/departments.json';
 import { Placemark } from '@pbe/react-yandex-maps';
 import { PopupContext } from '../../App';
-
-const marks = [];
+import useFetchDepartments from '../../hooks/useFetchDepartments';
+/*
+let marks = [];
 
 Departments.branches.forEach((el) => {
   if (el.city === 'Москва') {
     marks.push(el);
   }
 });
-
+*/
 export default function Marks() {
   const { selectedItem, setSelectedItem } = useContext(PopupContext);
+  const [marks, setMarks] = useState([]);
+  useEffect(() => {
+    (async () => {
+      console.log('fetching');
+      try {
+        const departmentsData = await useFetchDepartments();
+        console.log(departmentsData);
+        setMarks(departmentsData);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
   return (
     <>
       {marks.map((item) => (
