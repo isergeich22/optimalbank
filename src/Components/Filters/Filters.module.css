@@ -1,0 +1,61 @@
+.card {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  border-radius: 10px;
+
+  padding: 0;
+}
+
+.cardBody {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.parametersList {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.parameter {
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.subOptionsList {
+  margin-top: 10px;
+  list-style-type: none;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.subOption {
+  margin-bottom: 5px;
+}

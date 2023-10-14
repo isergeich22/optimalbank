@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@500;900&display=swap');
+
+:root {
+    --search-header-font: 'Onest', sans-serif;
+    --search-button-font: 'Onest', sans-serif;
+    --search-list-font: 'Onest', sans-serif;
+}
+
+.searchBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}    
+
+    .searchBlock__control {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 2%;    
+    }
+
+        .searchBlock__control__header {
+            width: 100%;
+            font-family: var(--search-header-font);
+            background: linear-gradient(106deg, #94C5FF 22.44%, #80EEF6 55.8%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            font-size: 2rem;
+            text-align: left;
+        }
+
+        .searchBlock__control__choose {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 2%;
+        }
+
+        .searchBlock__control__choose > button {
+            width: 15%;
+            height: 3vh;
+            border: 1px solid #8BD9FB;
+            border-radius: 6px;
+            color: #8BD9FB;
+            background: none;
+            padding: 2px 10px;
+            font-family: var(--search-button-font);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .searchBlock__control__choose > button:hover {
+            background: linear-gradient(106deg, #94C5FF 22.44%, #80EEF6 55.8%) !important;
+            color: #000 !important;
+            cursor: pointer;
+        }
+
+            .active {
+                background: linear-gradient(106deg, #94C5FF 22.44%, #80EEF6 55.8%) !important;
+                color: #000 !important;
+            }
+
+        .searchBlock__control__filters {
+            width: 90%;
+        }
+
+            .searchBlock__control__filters > ul {
+                list-style: none;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4%;
+                margin-bottom: 1vh;
+                padding: 0;
+                font-family: var(--search-list-font);
+            }
+
+            .filterButton {
+                background: none;
+                border: none;
+                font-family: var(--search-header-font);
+                font-size: 1rem;
+                background: linear-gradient(106deg, #94C5FF 22.44%, #80EEF6 55.8%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 900;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 1%;
+            }
+
+        .searchBlock__legend {
+
+            width: 21%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+        }
+
+            .searchBlock__legend__title {
+                width: 60%;
+                margin: 0;
+                margin-bottom: 2%;
+                text-align: left;
+                font-size: .9rem;
+            }
+
+            .searchBlock__legend__list {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+                .searchBlock__legend__list > li {
+                    width: 75%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    text-align: left;
+                    margin-bottom: 1%;
+                    gap: 2%;
+                    font-size: .9rem;
+                    line-height: 18px;
+                }
