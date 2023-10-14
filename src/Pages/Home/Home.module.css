@@ -1,0 +1,22 @@
+.h1Gradient {
+  font-family: PT Sans Caption;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: -webkit-linear-gradient(106deg, #94c5ff 22.44%, #80eef6 55.8%);
+  background: -moz-linear-gradient(106deg, #94c5ff 22.44%, #80eef6 55.8%);
+  background: -o-linear-gradient(106deg, #94c5ff 22.44%, #80eef6 55.8%);
+  background: linear-gradient(106deg, #94c5ff 22.44%, #80eef6 55.8%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sybTitle {
+  color: var(--, #fff);
+  font-family: PT Sans Caption;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

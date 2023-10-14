@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@500;900&display=swap');
+
+:root {
+    --search-header-font: 'Onest', sans-serif;
+    --search-button-font: 'Onest', sans-serif;
+    --search-list-font: 'Onest', sans-serif;
+}
+
+.queueModal {
+    background: #fff;
+    width: 60vw;
+    position: absolute;
+    top: 230px;
+    left: 350px;
+    z-index: 400;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+    .queueHeader {
+        font-family: var(--search-header-font);
+        color: #1E4BD2;
+        font-weight: 900;
+        font-size: 2rem;
+    }

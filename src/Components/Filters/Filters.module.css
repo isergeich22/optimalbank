@@ -1,0 +1,90 @@
+.card {
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  border-radius: 10px;
+
+  padding: 0;
+}
+
+.cardBody {
+  padding: 20px;
+}
+
+.heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.parametersList {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.parameter {
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.subOptionsList {
+  margin-top: 10px;
+  list-style-type: none;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.subOption {
+  margin-bottom: 5px;
+}
+.submitContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.subminBtn {
+  color: black;
+  width: 324px;
+  height: 49.703px;
+  border-radius: 50px;
+  background: linear-gradient(107deg, #367df7 23.09%, #80eef6 57.43%, #8eb2ff 76.22%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.columnWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category {
+  flex-basis: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.ant-modal-title {
+  color: #1E4BD2;
+}

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@500&display=swap');
+
+:root {
+    --nav-block-font: 'Onest', sans-serif;
+}
+
+.HeaderContainer {
+    
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 14vh;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+
+}
+
+    .HeaderContainer__navBlock {
+
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .HeaderContainer__navBlock__upper {
+
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid #545A64;
+        padding: 10px 0;
+        gap: 5%;
+        align-items: center;
+
+    }
+
+        .HeaderContainer__navBlock__upper__buttons {
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            gap: 5%;
+        }
+
+        .HeaderContainer__navBlock__upper > button {
+            width: 7%;
+            height: 5vh;
+            background: #4A5C72;
+            border: none;
+            border-radius: 50px;
+        }
+
+            .HeaderContainer__navBlock__upper > button > img {
+                display: block;
+                position: relative;
+                width: 2.7vw;
+                top: -2px;
+                right: -40px;
+            }
+
+            .HeaderContainer__navBlock__upper__buttons > a {
+                text-decoration: none;
+                color: #ffffff78;
+                font-family: var(--nav-block-font);
+                font-size: 12px;
+            }            
+
+    .HeaderContainer__navBlock__bottom {
+
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 1%;
+        padding: 20px 0;
+
+    }
+
+        .HeaderContainer__navBlock__bottom > a {
+            text-decoration: none;
+            color: #fff;
+            font-family: var(--nav-block-font);
+        }
