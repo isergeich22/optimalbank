@@ -13,6 +13,7 @@ export default function MapBlock() {
   });
 
   const handleGeolocationSuccess = (geolocation) => {
+    console.log('geo');
     console.log(geolocation.position);
     setMapState({
       center: geolocation.position,
@@ -31,7 +32,9 @@ export default function MapBlock() {
             <GeolocationControl
               options={{ float: 'right', size: 'auto' }}
               onSuccess={handleGeolocationSuccess}
+              onError={(error) => console.error('Error getting geolocation:', error)}
             />
+
             <ZoomControl options={{ float: 'right', size: 'auto' }} />
             <SearchControl options={{ float: 'right', size: 'medium' }} />
 
