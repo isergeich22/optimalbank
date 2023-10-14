@@ -3,15 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-<<<<<<< HEAD
   "include": [
     "src"
   ],
   "exclude": [
     "src/setupProxy.js"
   ],
-=======
->>>>>>> da88d912c41d2045e2dbdea5361ffcf40a602cc3
   "scripts": {
     "dev": "vite",
     "build": "vite build",
