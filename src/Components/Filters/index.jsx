@@ -108,9 +108,9 @@ const Filters = ({ isOpen, onClose }) => {
             ))}
           </div>
           <div className={styles.submitContainer}>
-            <button onClick={formik.handleSubmit} className={styles.subminBtn}>
+            <Button onClick={formik.handleSubmit} type="primary">
               Применить
-            </button>
+            </Button>
           </div>
         </form>
       </div>
