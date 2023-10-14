@@ -84,3 +84,7 @@
   box-sizing: border-box;
   padding: 10px;
 }
+
+.ant-modal-title {
+  color: #1E4BD2;
+}

@@ -74,7 +74,7 @@ const Filters = ({ isOpen, onClose }) => {
 
   return (
     <Modal
-      title="Параметры поиска"
+      title="Услуги банка ВТБ"
       open={isOpen}
       onCancel={() => onClose(false)}
       footer={null}

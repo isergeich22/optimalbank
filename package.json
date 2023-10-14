@@ -6,7 +6,9 @@
   "include": [
     "src"
   ],
-  "exclude": ["src/setupProxy.js"],
+  "exclude": [
+    "src/setupProxy.js"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
