@@ -1,16 +1,20 @@
-const filterDepartments = (departments, filters) => {
+const filterDepartments = (departments, params) => {
+  const corelation = {
+    vipZone: 'VIP Зона ',
+    vipOffice: 'VIP Офис ',
+    ramp: 'Пандус ',
+    person: 'Обслуживание инвалидов по зрению ',
+    juridical: 'Обслуживание юридических лиц ',
+    Prime: 'Prime ',
+  };
+
   return departments.filter((department) => {
-    let fields = Object.keys(department);
-    for (let i = 0; i < fields.length; i++) {
-      if (typeof department[fields[i]] === 'object') {
-        fields.push(...Object.keys(fields[i]));
-        for (let j = 0; j < Object.keys(department[fields[i]].length); j++) {
-          fields.push(department[fields[i]][k]);
-        }
-      }
-    }
-    console.log(department);
-    console.log('fields ', fields[i]);
+    const special = department.special;
+    let vars = Object.keys(special)
+      .filter((el) => special[el])
+      .map((el) => corelation[el]);
+
+    return params.every((param) => vars.includes(param));
   });
 };
 

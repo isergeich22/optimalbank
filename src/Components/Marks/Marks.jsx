@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Placemark } from '@pbe/react-yandex-maps';
 import { PopupContext } from '../../App';
 import departmentStore from '../../store/DepartmentsStore';
-import useFetchDepartments from '../../hooks/useFetchDepartments';
+import useFetchDepartments from '../../hooks/FetchDepartments';
 
 const Marks = observer(() => {
   const { setSelectedItem } = useContext(PopupContext);
@@ -19,6 +19,14 @@ const Marks = observer(() => {
     })();
   }, []);
   useEffect(() => {}, [departmentStore.departments.length]);
+
+  function randomInteger(min, max){
+
+    let rand = min + Math.random() * (max + 1 - min)
+    return Math.floor(rand)   
+
+  }
+
   return (
     <>
       {departmentStore.departments.map((item) => (
@@ -28,7 +36,7 @@ const Marks = observer(() => {
           options={{
             iconLayout: 'default#image',
             iconImageSize: [32, 32],
-            iconImageHref: '/icon.png',
+            iconImageHref: `/icon_${randomInteger(1,3)}.png`,
           }}
           onClick={() => setSelectedItem(item)}
         />

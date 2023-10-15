@@ -12,6 +12,7 @@ class DepartmentStore {
 
   setDepartments(departments) {
     console.log('setting departments', departments.length);
+    console.log('setting departments', departments[0]);
     this.departments = departments;
     console.log('setted departments', departments.length);
 

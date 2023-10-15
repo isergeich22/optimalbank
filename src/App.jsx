@@ -7,11 +7,20 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [activeTab, setActiveTab] = useState('departments');
   const [params, setParams] = useState([]);
+  const [startDot, setStartDot] = useState([55.751574, 37.573856]);
 
   return (
     <BrowserRouter>
       <PopupContext.Provider
-        value={{ selectedItem, setSelectedItem, activeTab, setActiveTab, params, setParams }}>
+        value={{
+          selectedItem,
+          setSelectedItem,
+          activeTab,
+          setActiveTab,
+          params,
+          setParams,
+          startDot,
+        }}>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>

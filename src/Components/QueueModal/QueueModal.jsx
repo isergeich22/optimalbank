@@ -51,7 +51,7 @@ export default function QueueModal({ workingTime, isOpen, setIsOpen }) {
             <Button
               type="primary"
               onClick={handleConfirm}
-              style={{ margin: 'auto', marginTop: '16px', padding: 4 }}
+              style={{ margin: 'auto', marginTop: '16px', padding: 4, minWidth: 100 }}
               disabled={!selectedTime}>
               Подтвердить
             </Button>
