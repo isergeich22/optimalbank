@@ -9,19 +9,23 @@ const Marks = observer(() => {
   const { setSelectedItem } = useContext(PopupContext);
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       try {
         const departmentsData = await useFetchDepartments();
         departmentStore.setDepartments(departmentsData);
       } catch (error) {
         console.error(error);
       }
-    };
-
-    fetchData();
+    })();
   }, []);
-
   useEffect(() => {}, [departmentStore.departments.length]);
+
+  function randomInteger(min, max){
+
+    let rand = min + Math.random() * (max + 1 - min)
+    return Math.floor(rand)   
+
+  }
 
   return (
     <>
@@ -32,7 +36,7 @@ const Marks = observer(() => {
           options={{
             iconLayout: 'default#image',
             iconImageSize: [32, 32],
-            iconImageHref: `/icon.png`,
+            iconImageHref: `/icon_${randomInteger(1,3)}.png`,
           }}
           onClick={() => setSelectedItem(item)}
         />
