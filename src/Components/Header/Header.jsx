@@ -44,9 +44,9 @@ export default function Header() {
               Группа ВТБ
             </a>
           </div>
-          <button>
+          {/* <button>
             <img src="/images/uiimages/dark_switch.png" alt="dark" width={30} height={30} />
-          </button>
+          </button> */}
         </div>
         <div className={styles.HeaderContainer__navBlock__bottom}>
           <a target="_blank" href="https://www.vtb.ru/">

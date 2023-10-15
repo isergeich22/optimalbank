@@ -19,6 +19,7 @@ const Marks = observer(() => {
     })();
   }, []);
   useEffect(() => {}, [departmentStore.departments.length]);
+
   return (
     <>
       {departmentStore.departments.map((item) => (
@@ -28,7 +29,7 @@ const Marks = observer(() => {
           options={{
             iconLayout: 'default#image',
             iconImageSize: [32, 32],
-            iconImageHref: '/icon.png',
+            iconImageHref: `/icon.png`,
           }}
           onClick={() => setSelectedItem(item)}
         />
