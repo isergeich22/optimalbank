@@ -48,7 +48,8 @@
 .HeaderContainer__navBlock__upper > button > img {
   display: block;
   position: relative;
-  width: 2.7vw;
+  width: 3vw;
+  height: 5vh;
   top: -2px;
   right: -40px;
 }
