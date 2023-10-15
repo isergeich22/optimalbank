@@ -18,7 +18,7 @@ const Marks = observer(() => {
       }
     })();
   }, []);
-
+  useEffect(() => {}, [departmentStore.departments.length]);
   return (
     <>
       {departmentStore.departments.map((item) => (

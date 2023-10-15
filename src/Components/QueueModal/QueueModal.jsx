@@ -25,7 +25,7 @@ export default function QueueModal({ workingTime, isOpen, setIsOpen }) {
   return (
     <Modal
       title="Запись в электронную очередь на ближайшее время"
-      visible={isOpen}
+      open={isOpen}
       onCancel={() => setIsOpen(false)}
       footer={null}
       closeIcon={<CloseOutlined className={styles.closeIcon} />}>
@@ -36,18 +36,22 @@ export default function QueueModal({ workingTime, isOpen, setIsOpen }) {
             <p>Вам доступны следующие варианты:</p>
             <div className={styles.queueBodyChoose}>
               {timeOptions.map((time, index) => (
-                <button
+                <Button
                   key={index}
                   onClick={() => handleTimeClick(time)}
-                  className={selectedTime === time ? styles.selectedTime : ''}>
+                  style={{
+                    background: selectedTime === time ? '#1890ff' : 'transparent',
+                    color: selectedTime === time ? '#fff' : 'rgba(0, 0, 0, 0.65)',
+                    border: selectedTime === time ? '1px solid #1890ff' : '1px solid #d9d9d9',
+                  }}>
                   {time}
-                </button>
+                </Button>
               ))}
             </div>
             <Button
               type="primary"
               onClick={handleConfirm}
-              style={{ padding: 4, margin: 'auto' }}
+              style={{ margin: 'auto', marginTop: '16px', padding: 4 }}
               disabled={!selectedTime}>
               Подтвердить
             </Button>

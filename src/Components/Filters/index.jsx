@@ -1,76 +1,117 @@
-import React from 'react';
-import { Checkbox, Button, Modal } from 'antd';
-
+import React, { useEffect, useState, useContext } from 'react';
+import { Checkbox, Button, Modal, Input } from 'antd';
+import departmentStore from '../../store/DepartmentsStore';
+import { observer } from 'mobx-react-lite';
 import styles from './Filters.module.css';
 import { useFormik } from 'formik';
+import useDepartmentsByParams from '../../hooks/useDepartmentsByParams';
+import { PopupContext } from '../../App';
 
-const parameters = [
-  {
-    id: 1,
-    label: 'Кредиты',
-    options: [
-      'Ипотечные кредиты (консультирование)',
-      'Ипотечные кредиты (оформление, выдача)',
-      'Потребительские кредиты (консультирование, прием документов)',
-      'Потребительские кредиты (оформление, выдача)',
-      'Автокредиты (оформление, выдача)',
-      'Военная ипотека (оформление, выдача)',
-      'Образовательный кредит (оформление, выдача)',
-    ],
-  },
-  {
-    id: 2,
-    label: 'Платежи',
-    options: ['Платежи в пользу ЮЛ', 'Аккредитивы', 'Эскроу-счет'],
-  },
-  {
-    id: 3,
-    label: 'Другие услуги',
-    options: [
-      'Открытие УДБО',
-      'Операции, связанные с обслуживанием госпрограмм (ГЖС)',
-      'Операции, связанные с обслуживанием региональных программ (субсидии)',
-      'Страхование',
-      'Операции с наличной иностранной валютой',
-      'Специальные избирательные счета кандидатов',
-    ],
-  },
-  {
-    id: 4,
-    label: 'Вклады, металлы, сейфы',
-    options: [
-      'Сберегательные сертификаты банка',
-      'Монеты из драгоценных металлов (покупка)',
-      'Монеты из драгоценных металлов (продажа)',
-      'Обезличенные металлические счета',
-      'Драгоценные металлы в слитках (покупка)',
-      'Драгоценные металлы в слитках (продажа)',
-      'Предоставление в аренду индивидуальных сейфов',
-    ],
-  },
-  {
-    id: 5,
-    label: 'Специальные возможности',
-    options: [
-      'Регистрация биометрии в Единую биометрическую систему',
-      'Перевод на русский жестовый язык',
-      'Обслуживание инвалидов по зрению',
-      'Есть пандус',
-      'Выплаты вкладчикам банка, в отношении которого произошел страховой случай (АСВ)',
-    ],
-  },
-];
+const Filters = observer(({ isOpen, onClose }) => {
+  const [departmentCities, setDepartmentCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState('');
+  const [departmentFlSchedules, setDepartmentFlSchedules] = useState([]);
+  const [departmentJurLSchedules, setDepartmentJurLSchedules] = useState([]);
+  const { params, setParams } = useContext(PopupContext);
+  useEffect(() => {
+    const replaceDotsInTime = (str) => {
+      return str.replace(/(\d{2})\.(\d{2})/g, '$1:$2');
+    };
 
-const Filters = ({ isOpen, onClose }) => {
+    const uniqueCities = Array.from(
+      new Set(
+        departmentStore.departments.map((department) => department.city.toLowerCase().trim()),
+      ),
+    ).slice(0, 20); // Ограничиваем до 20 городов
+
+    const uniqueFlSchedules = [
+      'пн-пт: 10:00-19:00 сб, вс: выходной',
+      'пн-пт: 10:00-20:00 сб, вс: выходной',
+    ];
+    const uniqueJurLSchedules = [
+      'пн-пт: 09:00-18:00 сб, вс: выходной',
+      'пн-пт: 09:00-20:00 сб, вс: выходной',
+    ];
+
+    setDepartmentCities(uniqueCities);
+    setDepartmentFlSchedules(uniqueFlSchedules);
+    setDepartmentJurLSchedules(uniqueJurLSchedules);
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       selectedOptions: [],
     },
     onSubmit: (values) => {
       console.log('Selected Options:', values.selectedOptions);
+      setParams(values.selectedOptions);
+      departmentStore.setDepartments(departmentStore.departments, useDepartmentsByParams(params));
       onClose(false);
     },
   });
+
+  const handleCitySearch = (e) => {
+    setSelectedCity(e.target.value.toLowerCase().trim());
+  };
+
+  const handleCityCheckboxChange = (city) => {
+    const selectedOptions = formik.values.selectedOptions;
+
+    if (selectedOptions.includes(city)) {
+      formik.setFieldValue(
+        'selectedOptions',
+        selectedOptions.filter((item) => item !== city),
+      );
+    } else {
+      formik.setFieldValue('selectedOptions', [...selectedOptions, city]);
+    }
+  };
+
+  const parameters = [
+    {
+      id: 1,
+      label: 'Режим работы (Физические лица)',
+      options: departmentFlSchedules.map((schedule) => (
+        <Checkbox
+          key={schedule}
+          checked={formik.values.selectedOptions.includes(schedule)}
+          onChange={() => handleCityCheckboxChange(schedule)}>
+          {schedule}
+        </Checkbox>
+      )),
+    },
+    {
+      id: 2,
+      label: 'Режим работы (Юридические лица)',
+      options: departmentJurLSchedules.map((schedule) => (
+        <Checkbox
+          key={schedule}
+          checked={formik.values.selectedOptions.includes(schedule)}
+          onChange={() => handleCityCheckboxChange(schedule)}>
+          {schedule}
+        </Checkbox>
+      )),
+    },
+    {
+      id: 3,
+      label: 'Специальные возможности',
+      options: [
+        'VIP Зона ',
+        'VIP Офис ',
+        'Пандус ',
+        'Обслуживание инвалидов по зрению ',
+        'Обслуживание юридических лиц ',
+        'Prime ',
+      ].map((special) => (
+        <Checkbox
+          key={special}
+          checked={formik.values.selectedOptions.includes(special)}
+          onChange={() => handleCityCheckboxChange(special)}>
+          {special}
+        </Checkbox>
+      )),
+    },
+  ];
 
   return (
     <Modal
@@ -86,36 +127,26 @@ const Filters = ({ isOpen, onClose }) => {
             {parameters.map((parameter) => (
               <div key={parameter.id} className={styles.category}>
                 <h2>{parameter.label}</h2>
-                <ul className={styles.subOptionsList}>
-                  {parameter.options.map((option) => (
-                    <li key={option} className={styles.subOption}>
-                      <Checkbox
-                        checked={formik.values.selectedOptions.includes(option)}
-                        onChange={() => {
-                          formik.setFieldValue(
-                            'selectedOptions',
-                            formik.values.selectedOptions.includes(option)
-                              ? formik.values.selectedOptions.filter((item) => item !== option)
-                              : [...formik.values.selectedOptions, option],
-                          );
-                        }}>
-                        {option}
-                      </Checkbox>
-                    </li>
-                  ))}
-                </ul>
+                {parameter.id === 0 && ( // Показываем поле ввода для поиска города
+                  <Input
+                    placeholder="Начните вводить чтобы увидеть больше"
+                    value={selectedCity}
+                    onChange={handleCitySearch}
+                  />
+                )}
+                <ul className={styles.subOptionsList}>{parameter.options}</ul>
               </div>
             ))}
           </div>
           <div className={styles.submitContainer}>
             <Button onClick={formik.handleSubmit} type="primary">
               Применить
-            </Button>            
+            </Button>
           </div>
         </form>
       </div>
     </Modal>
   );
-};
+});
 
 export default Filters;

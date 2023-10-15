@@ -11,7 +11,9 @@ class DepartmentStore {
   }
 
   setDepartments(departments) {
+    console.log('setting departments', departments.length);
     this.departments = departments;
+    console.log('setted departments', departments.length);
 
     /* example of using
 (async () => {

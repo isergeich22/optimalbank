@@ -10,6 +10,7 @@ import DepartmentsModal from '../../Components/DepartmentsModal/DepartmentsModal
 import QueueModal from '../../Components/QueueModal/QueueModal';
 export default function Home() {
   const [curModal, setCurModal] = useState('base');
+
   const label = 'Поиск отделения / банкомата';
   const sublabel = '';
   const handleChangeModal = (value) => {
@@ -20,7 +21,14 @@ export default function Home() {
       <Header />
       <QueueModal />
       <SearchParams curModal={curModal} onChangeModal={handleChangeModal} />
-      <div style={{ display: 'flex', marginTop: '15vh', gap: '9px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '5vh',
+          gap: '9px',
+          marginBottom: '5vh',
+        }}>
         <DepartmentsModal curModal={curModal} onChangeModal={handleChangeModal} />
         <MapBlock />
       </div>

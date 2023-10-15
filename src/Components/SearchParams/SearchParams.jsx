@@ -1,115 +1,202 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './SearchParams.module.css';
 import { Form } from 'react-bootstrap';
+import { PopupContext } from '../../App';
 import Filters from '../Filters';
+import useFetchDepartments from '../../hooks/useFetchDepartments';
+import departmentStore from '../../store/DepartmentsStore';
 
 export default function SearchParams({ curModal, onChangeModal }) {
+  const { selectedItem, setSelectedItem, activeTab, setActiveTab, params, setParams } =
+    useContext(PopupContext);
+  const [radioChecked, setRadioChecked] = useState('');
+
+  const resetDepartments = () => {
+    (async () => {
+      try {
+        const departmentsData = await useFetchDepartments();
+        departmentStore.setDepartments(departmentsData);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+    setParams([]);
+  };
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setSelectedItem(null);
+  };
+  const handleRadioChange = (e) => {
+    setRadioChecked(e.target.value);
+  };
   return (
     <section className={styles.searchBlock}>
       <div className={styles.searchBlock__control}>
         <h1 className={styles.searchBlock__control__header}>Поиск отделения / банкомата</h1>
         <div className={styles.searchBlock__control__choose}>
-          <button className={styles.active}>Найти отделение</button>
-          <button>Найти банкомат</button>
+          <button
+            className={activeTab === 'departments' && styles.active}
+            onClick={() => handleTabChange('departments')}>
+            Найти отделение
+          </button>
+          <button
+            className={activeTab === 'atms' && styles.active}
+            onClick={() => handleTabChange('atms')}>
+            Найти банкомат
+          </button>
         </div>
         <div className={styles.searchBlock__control__filters}>
           <ul>
             <li>
-              <Form.Check type="radio" label="Физические лица" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Физические лица"
+                id={`default-radio-1`}
+                value="Физические лица"
+                checked={radioChecked === 'Физические лица'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li>
-              <Form.Check type="radio" label="Юридические лица" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Юридические лица"
+                id={`default-radio-2`}
+                value="Юридические лица"
+                checked={radioChecked === 'Юридические лица'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li>
-              <Form.Check type="radio" label="Привилегия" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Привилегия"
+                id={`default-radio-3`}
+                value="Привилегия"
+                checked={radioChecked === 'Привилегия'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li>
-              <Form.Check type="radio" label="Работает 24 часа" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Работает 24 часа"
+                id={`default-radio-4`}
+                value="Работает 24 часа"
+                checked={radioChecked === 'Работает 24 часа'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li>
               <Form.Check
                 type="radio"
                 label="Доступно для маломобильных граждан"
-                id={`default-radio`}
+                id={`default-radio-5`}
+                value="Доступно для маломобильных граждан"
+                checked={radioChecked === 'Доступно для маломобильных граждан'}
+                onChange={handleRadioChange}
               />
             </li>
             <li>
-              <Form.Check type="radio" label="Прайм" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Прайм"
+                id={`default-radio-6`}
+                value="Прайм"
+                checked={radioChecked === 'Прайм'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li>
-              <Form.Check type="radio" label="Работает в выходные" id={`default-radio`} />
+              <Form.Check
+                type="radio"
+                label="Работает в выходные"
+                id={`default-radio-7`}
+                value="Работает в выходные"
+                checked={radioChecked === 'Работает в выходные'}
+                onChange={handleRadioChange}
+              />
             </li>
             <li style={{ width: 210 }}>
-              <button
-                className={styles.filterButton}
-                onClick={() => onChangeModal(curModal === 'filters' ? 'base' : 'filters')}>
-                <svg
-                  width="32"
-                  height="32"
-                  viewBox="0 0 34 34"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <g id="vuesax/linear/setting-4">
-                    <g id="setting-4">
-                      <path
-                        id="Vector"
-                        d="M30.9077 9.33691H22.5562"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        id="Vector_2"
-                        d="M8.63702 9.33691H3.06934"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        id="Vector_3"
-                        d="M14.2047 14.2175C16.8953 14.2175 19.0765 12.0321 19.0765 9.33628C19.0765 6.64047 16.8953 4.45508 14.2047 4.45508C11.5142 4.45508 9.33301 6.64047 9.33301 9.33628C9.33301 12.0321 11.5142 14.2175 14.2047 14.2175Z"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        id="Vector_4"
-                        d="M30.908 24.6777H25.3403"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        id="Vector_5"
-                        d="M11.4209 24.6777H3.06934"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        id="Vector_6"
-                        d="M19.7726 29.5583C22.4632 29.5583 24.6443 27.3729 24.6443 24.6771C24.6443 21.9813 22.4632 19.7959 19.7726 19.7959C17.082 19.7959 14.9009 21.9813 14.9009 24.6771C14.9009 27.3729 17.082 29.5583 19.7726 29.5583Z"
-                        stroke="#7ED4FF"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+              {params.length ? (
+                <button className={styles.filterButton} onClick={() => resetDepartments()}>
+                  Сбросить фильтры
+                </button>
+              ) : (
+                <button
+                  className={styles.filterButton}
+                  onClick={() => {
+                    onChangeModal(curModal === 'filters' ? 'base' : 'filters');
+                    setSelectedItem(null);
+                  }}>
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 34 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="vuesax/linear/setting-4">
+                      <g id="setting-4">
+                        <path
+                          id="Vector"
+                          d="M30.9077 9.33691H22.5562"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          id="Vector_2"
+                          d="M8.63702 9.33691H3.06934"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          id="Vector_3"
+                          d="M14.2047 14.2175C16.8953 14.2175 19.0765 12.0321 19.0765 9.33628C19.0765 6.64047 16.8953 4.45508 14.2047 4.45508C11.5142 4.45508 9.33301 6.64047 9.33301 9.33628C9.33301 12.0321 11.5142 14.2175 14.2047 14.2175Z"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          id="Vector_4"
+                          d="M30.908 24.6777H25.3403"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          id="Vector_5"
+                          d="M11.4209 24.6777H3.06934"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          id="Vector_6"
+                          d="M19.7726 29.5583C22.4632 29.5583 24.6443 27.3729 24.6443 24.6771C24.6443 21.9813 22.4632 19.7959 19.7726 19.7959C17.082 19.7959 14.9009 21.9813 14.9009 24.6771C14.9009 27.3729 17.082 29.5583 19.7726 29.5583Z"
+                          stroke="#7ED4FF"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </g>
                     </g>
-                  </g>
-                </svg>
-                Все услуги
-              </button>
+                  </svg>
+                  Все услуги
+                </button>
+              )}
             </li>
           </ul>
         </div>
@@ -127,8 +214,8 @@ export default function SearchParams({ curModal, onChangeModal }) {
               <circle cx="15" cy="15" r="15" fill="#0AD1AD" />
               <circle cx="15" cy="14.9727" r="12" fill="black" />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.6324 12.6719H9.58747L10.4856 10.4531H22.4248L21.6324 12.6719ZM20.3645 16.211H8.31962L9.2177 13.9922H21.1569L20.3645 16.211ZM7.05176 19.8036H19.0967L19.8891 17.5848H7.94984L7.05176 19.8036Z"
                 fill="white"
               />
@@ -149,8 +236,8 @@ export default function SearchParams({ curModal, onChangeModal }) {
               <circle cx="15" cy="15" r="15" fill="#F9A502" />
               <circle cx="15" cy="14.9727" r="12" fill="black" />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.6324 12.6719H9.58747L10.4856 10.4531H22.4248L21.6324 12.6719ZM20.3645 16.211H8.31962L9.2177 13.9922H21.1569L20.3645 16.211ZM7.05176 19.8036H19.0967L19.8891 17.5848H7.94984L7.05176 19.8036Z"
                 fill="white"
               />
@@ -171,8 +258,8 @@ export default function SearchParams({ curModal, onChangeModal }) {
               <circle cx="15" cy="15" r="15" fill="#FF1B0D" />
               <circle cx="15" cy="14.9727" r="12" fill="black" />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.6324 12.6719H9.58747L10.4856 10.4531H22.4248L21.6324 12.6719ZM20.3645 16.211H8.31962L9.2177 13.9922H21.1569L20.3645 16.211ZM7.05176 19.8036H19.0967L19.8891 17.5848H7.94984L7.05176 19.8036Z"
                 fill="white"
               />

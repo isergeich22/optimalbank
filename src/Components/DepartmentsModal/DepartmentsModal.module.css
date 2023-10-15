@@ -7,32 +7,7 @@
   overflow: auto;
 
   position: relative;
-}
-.tabsContainer {
-  margin: 20px 0;
-  display: flex;
-  gap: 20px;
-  padding: 0 16px;
-}
-.tabButton {
-  width: 103.96px;
-  height: 36px;
-  border-radius: 25px;
-  border: 1.5px solid #2f67e9;
-  color: black;
-  background: var(--btnColor, #2f67e9);
-  cursor: pointer;
-  transition: background-color 0.7s ease;
-}
-
-.tabButton:hover {
-  background-color: #2f67e9;
-  color: white;
-}
-
-.activeTab {
-  background-color: #2f67e9;
-  color: #ffffff;
+  padding: 20px 16px 0 16px;
 }
 
 .cards {
