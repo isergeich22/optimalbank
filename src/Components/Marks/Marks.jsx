@@ -3,21 +3,24 @@ import { observer } from 'mobx-react-lite';
 import { Placemark } from '@pbe/react-yandex-maps';
 import { PopupContext } from '../../App';
 import departmentStore from '../../store/DepartmentsStore';
-import useFetchDepartments from '../../hooks/useFetchDepartments';
+import useFetchDepartments from '../../hooks/FetchDepartments';
 
 const Marks = observer(() => {
   const { setSelectedItem } = useContext(PopupContext);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
         const departmentsData = await useFetchDepartments();
         departmentStore.setDepartments(departmentsData);
       } catch (error) {
         console.error(error);
       }
-    })();
+    };
+
+    fetchData();
   }, []);
+
   useEffect(() => {}, [departmentStore.departments.length]);
 
   return (

@@ -3,7 +3,7 @@ import styles from './SearchParams.module.css';
 import { Form } from 'react-bootstrap';
 import { PopupContext } from '../../App';
 import Filters from '../Filters';
-import useFetchDepartments from '../../hooks/useFetchDepartments';
+import useFetchDepartments from '../../hooks/FetchDepartments';
 import departmentStore from '../../store/DepartmentsStore';
 
 export default function SearchParams({ curModal, onChangeModal }) {

@@ -9,6 +9,7 @@ import { PopupContext } from '../../App';
 
 const Filters = observer(({ isOpen, onClose }) => {
   const [departmentCities, setDepartmentCities] = useState([]);
+  const { startDot } = useContext(PopupContext);
   const [selectedCity, setSelectedCity] = useState('');
   const [departmentFlSchedules, setDepartmentFlSchedules] = useState([]);
   const [departmentJurLSchedules, setDepartmentJurLSchedules] = useState([]);
@@ -45,10 +46,22 @@ const Filters = observer(({ isOpen, onClose }) => {
     onSubmit: (values) => {
       console.log('Selected Options:', values.selectedOptions);
       setParams(values.selectedOptions);
-      departmentStore.setDepartments(departmentStore.departments, useDepartmentsByParams(params));
       onClose(false);
     },
   });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        departmentStore.setDepartments(await useDepartmentsByParams(params));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (params.length > 0) {
+      fetchData(startDot);
+    }
+  }, [params]);
 
   const handleCitySearch = (e) => {
     setSelectedCity(e.target.value.toLowerCase().trim());

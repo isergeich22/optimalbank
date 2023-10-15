@@ -69,3 +69,8 @@ export default function Header() {
     </section>
   );
 }
+/*
+<button>
+            <img src="/images/uiimages/dark_switch.png" alt="dark" width={30} height={30} />
+          </button>
+*/
